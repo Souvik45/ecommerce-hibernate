@@ -22,19 +22,23 @@ All to-one associations are `LAZY`; to-many associations are lazy by default. Wh
 ## Prerequisites
 - JDK 17+
 - Maven 3.8+
-- (Optional) MySQL 8 for the MySQL setup
+- MySQL 8 running locally
 
 ## Run
-
+mvn clean test          # runs the CRUD tests (WARNING: clears tables in the configured database)
+mvn compile exec:java   # runs the demo in App.java
 ```bash
 mvn clean test          # runs the CRUD test suite (H2, no setup needed)
 mvn compile exec:java   # runs the demo in App.java
 ```
 
 ## Switch to MySQL
-1. Create the schema with `src/main/resources/schema.sql` (or let Hibernate do it with `hbm2ddl.auto=update`).
-2. In `src/main/resources/hibernate.cfg.xml`, comment out the H2 block and uncomment the MySQL block. Set your username/password.
-3. `mvn compile exec:java`
+## Configure MySQL
+1. Start MySQL.
+2. In src/main/resources/hibernate.cfg.xml, set your MySQL username and password.
+   The `ecommerce` database is created automatically.
+   schema.sql is the equivalent manual DDL.
+3. Run `mvn compile exec:java` or run App.java from your IDE.
 
 ## Project layout
 
